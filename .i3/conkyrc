@@ -1,0 +1,109 @@
+out_to_x no
+out_to_console yes
+short_units yes
+update_interval 5
+override_utf8_locale yes
+text_buffer_size 1024
+
+TEXT
+
+[\
+# Uptime:
+{"full_text":"${uptime_short}","color":"\#EEEEEE","name":"uptime"},\
+
+# Battery:
+{"full_text":"🔋","color":"\#888888","separator":false,"name":"battery"},\
+{"full_text":"${if_match ${battery_percent BAT0}<=20}${battery_percent BAT0}","color":"\#FF33333","name":"battery"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${battery_percent BAT0}<=50}${battery_percent BAT0}","color":"\#FF9933","name":"battery"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${battery_percent BAT0}<=80}${battery_percent BAT0}","color":"\#F0DC64","name":"battery"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${battery_percent BAT0}<=100}${battery_percent BAT0}","color":"\#AAF096","name":"battery"},\
+{"full_text":"${endif}${endif}${endif}${endif}"},\
+
+# Download (change 'wlp1s0' according to iw dev):
+{"full_text":"","color":"\#888888","name":"net"},\
+{"full_text":"${if_match ${downspeedf wlp1s0}<100}${downspeed wlp1s0}","color":"\#AAF096","separator":false,"name":"net"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf wlp1s0}<300}${downspeed wlp1s0}","color":"\#68B1E8","separator":false,"name":"net"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf wlp1s0}<700}${downspeed wlp1s0}","color":"\#DB70B8","separator":false,"name":"net"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf wlp1s0}<1000}${downspeed wlp1s0}","color":"\#9470DB","separator":false,"name":"net"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf wlp1s0}>999}${downspeed wlp1s0}","color":"\#FF3333","separator":false,"name":"net"},\
+{"full_text":"${endif}${endif}${endif}${endif}${endif}"},\
+
+# Upload (change 'wlp1s0' to suit your needs):
+{"full_text":"","color":"\#888888","name":"net"},\
+{"full_text":"${if_match ${upspeedf wlp1s0}<15}${upspeed wlp1s0}","color":"\#AAF096","name":"net"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${upspeedf wlp1s0}<35}${upspeed wlp1s0}","color":"\#9470DB","name":"net"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${upspeedf wlp1s0}>=35}${upspeed wlp1s0}","color":"\#FF3333","name":"net"},\
+{"full_text":"${endif}${endif}${endif}"},\
+
+# Disk
+{"full_text":"💾","color":"\#888888","separator":false,"name":"disk"},\
+{"full_text":"${fs_free_perc}%","color":"\#AAF096","name":"disk"},\
+
+# Memory:
+{"full_text":"","color":"\#888888","name":"memory"},\
+{"full_text":"${if_match ${memperc}<30}${memeasyfree}","color":"\#AAF096","name":"memory"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${memperc}<60}${memeasyfree}","color":"\#F0DC64","name":"memory"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${memperc}<85}${memeasyfree}","color":"\#FF9933","name":"memory"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${memperc}>=85}${memeasyfree}","color":"\#FF3333","name":"memory"},\
+{"full_text":"${endif}${endif}${endif}${endif}"},\
+
+# CPU:
+{"full_text":"CPU","color":"\#888888","separator":false,"name":"cpu"},\
+{"full_text":"${if_match ${cpu}<25}[${cpu cpu1%}.${cpu cpu2%}]","color":"\#AAF096","name":"cpu"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${cpu}<50}[${cpu cpu1%}.${cpu cpu2%}]","color":"\#F0DC64","name":"cpu"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${cpu}<75}[${cpu cpu1%}.${cpu cpu2%}]","color":"\#FF9933","name":"cpu"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${cpu}<=100}[${cpu cpu1%}.${cpu cpu2}]","color":"\#FF3333","name":"cpu"},\
+{"full_text":"${endif}${endif}${endif}${endif}"},\
+
+# Updates:
+{"full_text":"UPDATES","color":"\#888888","name":"updates"},\
+
+# Volume (no pulseaudio support):
+{"full_text":"${if_match "${execi 5 /home/j/bin/volume_on.sh}" == "1"}🔊","separator":false,"color":"\#888888","name":"volume"},\
+{"full_text":"${execi 5 amixer get Master | grep 'Mono:' | awk '{print $4}' | tr -d '[]'}","color":"\#AAF096","name":"volume"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match "${execi 5 /home/j/bin/volume_on.sh}" == "0"}🔇","separator":false,"color":"\#888888","name":"volume"},\
+{"full_text":"${execi 5 amixer get Master | grep 'Mono:' | awk '{print $4}' | tr -d '[]'}","color":"\#AAF096","name":"volume"},\
+{"full_text":"${endif}${endif}"},\
+
+# Volume (pulseaudio) 
+#{"full_text":"${execi 5 /home/j/bin/check_pulseaudio_volume.perl 1}","color":"\#AAF096","name":"volume"},\
+
+# Temperature:
+{"full_text":"🌡","color":"\#888888","separator":false,"name":"temp"},\
+{"full_text":"${if_match ${hwmon 0 temp 1}<50}${hwmon 0 temp 1}","color":"\#AAF096","name":"temp"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${hwmon 0 temp 1}<75}${hwmon 0 temp 1}","color":"\#FF9933","name":"temp"},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${hwmon 0 temp 1}<=100}${hwmon 0 temp 1}","color":"\#FF3333","name":"temp"},\
+{"full_text":"${endif}${endif}${endif}"},\
+
+# Brightness:
+{"full_text":"☼","color":"\#888888","separator":false,"name":"brightness"},\
+{"full_text":"${execi 5 /home/j/bin/blevel.sh}","color":"\#AAF096","name":"brightness"},\
+
+# Date & Time:
+{"full_text":"","color":"\#888888","separator_block_width":"6","name":"date"},\
+{"full_text":"${time %D}","color":"\#EEEEEE","separator_block_width":"6","name":"date"},\
+{"full_text":"","color":"\#888888","separator_block_width":"6","name":"date"},\
+{"full_text":"${time %r}","color":"\#EEEEEE","name":"date"},\
+
+# Power:
+{"full_text":"PWR","color":"\#888888","separator_block_width":"6","name":"power"}
+
+],
