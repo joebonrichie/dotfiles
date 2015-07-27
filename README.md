@@ -9,6 +9,6 @@ gif
 
 acpi, archey, alsamixer, conky, dmenu, i3, i3lock, lm_sensors, python, 
 ttf-symbola (UTF-8 symbols), yad (GTK3 dialogs), iftop, xbacklight, 
-xfce4-terminal, xvkbd
+xfce4-terminal, xvkbd, xbindkeys, bc, pkgfile, alsa-utils
 
 note: no pulseaudio support in volume applet
