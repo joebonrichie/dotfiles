@@ -9,8 +9,6 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-exec --no-startup-id feh --bg-fill ~/Pictures/bg.jpg
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -183,3 +181,6 @@ client.unfocused #073642 #073642 #93a1a1 #586e75
 client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 
 for_window [class="^.*"] border pixel 1
+
+exec compton --config ~/.config/compton.conf -b -c
+exec --no-startup-id feh --bg-fill ~/Pictures/bg.jpg
