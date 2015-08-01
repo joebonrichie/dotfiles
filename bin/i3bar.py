@@ -42,7 +42,7 @@ class Item:
 items={}
 items["battery"]=Item(
             {
-                1:["xfce4-terminal", "-H", "--command", "acpi -V", "-T", "System Information", "--geometry=80x20+1272+25"]
+                1:["xfce4-terminal", "-H", "--command", "acpi -V", "-T", "System Information", "--geometry=80x20+0+0"]
             }
         )
 items["brightness"]=Item(
@@ -52,22 +52,27 @@ items["brightness"]=Item(
         )
 items["cpu"]=Item(
             {
-                1:["xfce4-terminal", "-H", "--command", "top", "-T", "Process Monitor", "--geometry=100x30+1115+25"]
+                1:["xfce4-terminal", "-H", "--command", "htop", "-T", "Process Monitor", "--geometry=100x30+0+0"]
             }
         )
 items["date"]=Item(
             {
-                1:["yad", "--button", "gtk-ok:0", "--geometry=++1650+25", "--class", "YADWIN", "--calendar"]
+                1:["yad", "--button", "gtk-ok:0", "--geometry=80x20+0+0", "--class", "YADWIN", "--calendar"]
             }
         )
 items["disk"]=Item(
             {
-                1:["xfce4-terminal", "-H", "--command", "pydf", "-T", "System Information", "--geometry=80x20+1272+25"]
+                1:["xfce4-terminal", "-H", "--command", "pydf", "-T", "System Information", "--geometry=80x20+0+0"]
+            }
+        )
+items["memory"]=Item(
+            {
+                1:["xfce4-terminal", "-H", "--command", "free -h", "-T", "System Information", "--geometry=90x20+0+0"]
             }
         )
 items["net"]=Item(
             {
-                1:["xfce4-terminal", "-H", "--command", "iftop -P -b -l -B", "-T", "Network Monitor", "--geometry=100x30+1115+25"]
+                1:["xfce4-terminal", "-H", "--command", "iftop -P -b -l -B", "-T", "Network Monitor", "--geometry=100x30+0+0"]
             }
         )
 items["power"]=Item(
@@ -82,12 +87,12 @@ items["updates"]=Item(
         )
 items["uptime"]=Item(
             {
-                1:["xfce4-terminal", "-H", "--command", "archey", "-T", "System Information", "--geometry=80x20+1272+25"]
+                1:["xfce4-terminal", "-H", "--command", "archey", "-T", "System Information", "--geometry=80x20+0+0"]
             }
         )
 items["temp"]=Item(
             {
-                1:["xfce4-terminal", "-H", "--command", "sensors", "-T", "System Information", "--geometry=80x20+1272+25"]
+                1:["xfce4-terminal", "-H", "--command", "sensors", "-T", "System Information", "--geometry=80x20+0+0"]
             }
         )
 items["volume"]=Item(
