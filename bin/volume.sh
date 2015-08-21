@@ -13,5 +13,6 @@ OUT=`yad --text="Volume" \
 
 # GTK-OK - Set volume
 if [[ $? -eq 0 ]];then
-  amixer set Master $OUT%
+  #amixer set Master $OUT%
+  pulseaudio-ctl set $OUT%
 fi

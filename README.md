@@ -9,6 +9,6 @@ gif
 
 acpi archey alsamixer conky dmenu i3 i3lock lm_sensors python 
 ttf-symbola yad iftop xorg-xbacklight xfce4-terminal xvkbd xbindkeys 
-bc pkgfile alsa-utils compton rofi
+bc pkgfile alsa-utils compton rofi pulseaudio pulseaudio-ctl
 
 note: no pulseaudio support in volume applet

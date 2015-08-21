@@ -74,15 +74,16 @@ TEXT
 {"full_text":"UPDATES","color":"\#888888","name":"updates"},\
 
 # Volume (no pulseaudio support):
-{"full_text":"${if_match "${execi 5 /home/j/bin/volume_on.sh}" == "1"}🔊","separator":false,"color":"\#888888","name":"volume"},\
-{"full_text":"${execi 5 amixer get Master | grep 'Mono:' | awk '{print $4}' | tr -d '[]'}","color":"\#AAF096","name":"volume"},\
-{"full_text":"${else}"},\
-{"full_text":"${if_match "${execi 5 /home/j/bin/volume_on.sh}" == "0"}🔇","separator":false,"color":"\#888888","name":"volume"},\
-{"full_text":"${execi 5 amixer get Master | grep 'Mono:' | awk '{print $4}' | tr -d '[]'}","color":"\#AAF096","name":"volume"},\
-{"full_text":"${endif}${endif}"},\
+#{"full_text":"${if_match "${execi 5 /home/j/bin/volume_on.sh}" == "1"}🔊","separator":false,"color":"\#888888","name":"volume"},\
+#{"full_text":"${execi 5 amixer get Master | grep 'Mono:' | awk '{print $4}' | tr -d '[]'}","color":"\#AAF096","name":"volume"},\
+#{"full_text":"${else}"},\
+#{"full_text":"${if_match "${execi 5 /home/j/bin/volume_on.sh}" == "0"}🔇","separator":false,"color":"\#888888","name":"volume"},\
+#{"full_text":"${execi 5 amixer get Master | grep 'Mono:' | awk '{print $4}' | tr -d '[]'}","color":"\#AAF096","name":"volume"},\
+#{"full_text":"${endif}${endif}"},\
 
 # Volume (pulseaudio) 
-#{"full_text":"${execi 5 /home/j/bin/check_pulseaudio_volume.perl 1}","color":"\#AAF096","name":"volume"},\
+{"full_text":"🔊","color":"\#888888","separator":false,"name":"volume"},\
+{"full_text":"${execi 5 pulseaudio-ctl current}","color":"\#AAF096","name":"volume"},\
 
 # Temperature:
 {"full_text":"🌡","color":"\#888888","separator":false,"name":"temp"},\
